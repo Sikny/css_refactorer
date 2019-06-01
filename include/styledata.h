@@ -7,6 +7,7 @@ class StyleData{
         static StyleData* Instance();
         unsigned int hasSelector(CssSelector cssSel);
         void append(CssSelector cssSel);
+        std::string toString();
 
     private:
         StyleData();

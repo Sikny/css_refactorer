@@ -1,5 +1,9 @@
 #include "styledata.h"
 
+StyleData* StyleData::_instance;
+
+StyleData::StyleData(){}
+
 StyleData* StyleData::Instance() {
     if(!_instance)
         _instance = new StyleData();
@@ -23,4 +27,12 @@ void StyleData::append(CssSelector cssSel){
     else{
         selectors.at(ind).merge(cssSel);
     }
+}
+
+std::string StyleData::toString(){
+    std::string str = "";
+    for(CssSelector sel : selectors){
+        str += sel.toString();
+    }
+    return str;
 }

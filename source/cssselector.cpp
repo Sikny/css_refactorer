@@ -8,8 +8,8 @@ bool CssSelector::operator==(CssSelector other){
     return this->selector.compare(other.selector) == 0;
 }
 
-unsigned int CssSelector::hasAttribute(std::string other){
-    unsigned int i = 0;
+int CssSelector::hasAttribute(std::string other){
+    int i = 0;
     for (std::string attr : attributes){
         if(attr.compare(other) == 0)
             return i;
@@ -19,14 +19,14 @@ unsigned int CssSelector::hasAttribute(std::string other){
 }
 
 std::string CssSelector::value_of(std::string attr){
-    unsigned int ind = this->hasAttribute(attr);
+    int ind = this->hasAttribute(attr);
     if(ind >= 0)
         return values.at(ind);
     else return "null";
 }
 
 void CssSelector::append(std::string attribute, std::string value){
-    unsigned int ind = this->hasAttribute(attribute);
+    int ind = this->hasAttribute(attribute);
     if(ind >= 0){
         if(this->values.at(ind).compare(value) == 0)
             return;
@@ -45,4 +45,15 @@ void CssSelector::merge(CssSelector other){
         this->append(attr, other.values.at(ind));
         ind++;
     }
+}
+
+std::string CssSelector::toString(){
+    std::string str = selector + " {\n";
+    unsigned int i = 0;
+    for(std::string attr : attributes){
+        str += "\t" + attr + ": " + values.at(i) + ";\n";
+        i++;
+    }
+    str += "}\n";
+    return str;
 }

@@ -1,8 +1,12 @@
 #include "styleconflicts.h"
 
+StyleConflicts* StyleConflicts::_instance;
+
+StyleConflicts::StyleConflicts(){}
+
 StyleConflicts* StyleConflicts::Instance(){
-    if(!_instance)
-        _instance = new StyleConflicts();
+    if(_instance)
+       _instance = new StyleConflicts();
     return _instance;
 }
 
