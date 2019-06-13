@@ -7,8 +7,8 @@
 class CssParser{
     public:
         static CssParser* Instance();
-        void parse(std::string in, StyleData* out);
-        void write(std::string out, StyleData* in);
+        void parse(std::ifstream& in, StyleData* out);
+        void write(std::ofstream& out, StyleData* in);
     
     private:
         CssParser();

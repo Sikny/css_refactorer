@@ -31,7 +31,15 @@ void CssSelector::append(std::string attribute, std::string value){
         if(this->values.at(ind).compare(value) == 0)
             return;
         else {
-            StyleConflicts::Instance()->append(selector, ind, attribute, {values.at(ind), value});
+            std::cout << std::endl << "Conflict:" << std::endl;
+            std::cout << selector << " {" << std::endl;
+            std::cout << '\t' << attribute << ": " << std::endl;
+            std::cout << "\t\tcurrent(0): " << std::endl << "\t\t\t" << values.at(ind) << std::endl;
+            std::cout << "\t\tnew(1): " << std::endl << "\t\t\t" << value << std::endl;
+            std::cout << "}" << std::endl;
+            unsigned int i = 0;
+            std::cin >> i;
+            if(i == 1) values.at(ind) = value;
         }
     } else {
         attributes.push_back(attribute);

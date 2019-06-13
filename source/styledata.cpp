@@ -10,8 +10,8 @@ StyleData* StyleData::Instance() {
     return _instance;
 }
 
-unsigned int StyleData::hasSelector(CssSelector cssSel){
-    unsigned int i = 0;
+int StyleData::hasSelector(CssSelector cssSel){
+    int i = 0;
     for(CssSelector sel : this->selectors){
         if(sel == cssSel)
             return i;
@@ -21,11 +21,11 @@ unsigned int StyleData::hasSelector(CssSelector cssSel){
 }
 
 void StyleData::append(CssSelector cssSel){
-    unsigned int ind = hasSelector(cssSel);
+    int ind = hasSelector(cssSel);
     if(ind >= 0)
-        selectors.push_back(cssSel);
-    else{
         selectors.at(ind).merge(cssSel);
+    else{
+        selectors.push_back(cssSel);
     }
 }
 
